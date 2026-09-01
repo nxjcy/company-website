@@ -1,0 +1,47 @@
+# 后端配置：使用 Netlify Git Gateway
+backend:
+  name: git-gateway
+  branch: main  # 你的GitHub默认分支
+
+# 媒体文件（图片）存放位置
+media_folder: "images"        # 图片上传到 images 文件夹
+public_folder: "/images"      # 网站引用图片的路径前缀
+
+# 配置可编辑的内容集合（collections）
+collections:
+  # ---------- 公司简介（单页内容） ----------
+  - name: "about"
+    label: "关于我们"
+    label_singular: "关于我们页面"
+    folder: "content/about"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "标题", name: "title", widget: "string", default: "关于我们" }
+      - { label: "正文内容", name: "body", widget: "markdown" }
+      - { label: "配图", name: "image", widget: "image", required: false }
+
+  # ---------- 首页核心业务（可增删改） ----------
+  - name: "services"
+    label: "核心业务"
+    label_singular: "核心业务项"
+    folder: "content/services"
+    create: true   # 允许在后台新增业务
+    slug: "{{slug}}"
+    fields:
+      - { label: "业务名称", name: "title", widget: "string" }
+      - { label: "简要描述", name: "description", widget: "text" }
+      - { label: "图标", name: "icon", widget: "string", default: "🏗️" }
+      - { label: "详情页链接", name: "link", widget: "string", required: false }
+
+  # ---------- 首页横幅（单页内容） ----------
+  - name: "hero"
+    label: "首页横幅"
+    label_singular: "横幅"
+    folder: "content/hero"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "副标题", name: "subtitle", widget: "text" }
+      - { label: "背景图片", name: "background_image", widget: "image", required: false }
