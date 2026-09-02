@@ -1,0 +1,50 @@
+# 后端配置：使用 GitHub 直接授权
+backend:
+  name: github
+  repo: nxjcy/company-website   # 你的 GitHub 仓库地址
+  branch: main                  # 默认分支
+  base_url: https://api.netlify.com
+  auth_endpoint: oauth
+
+# 媒体文件（图片）存放位置
+media_folder: "images"
+public_folder: "/images"
+
+# 配置可编辑的内容集合
+collections:
+  # ---------- 关于我们 ----------
+  - name: "about"
+    label: "关于我们"
+    label_singular: "关于我们页面"
+    folder: "content/about"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "标题", name: "title", widget: "string", default: "关于我们" }
+      - { label: "正文内容", name: "body", widget: "markdown" }
+      - { label: "配图", name: "image", widget: "image", required: false }
+
+  # ---------- 核心业务 ----------
+  - name: "services"
+    label: "核心业务"
+    label_singular: "核心业务项"
+    folder: "content/services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "业务名称", name: "title", widget: "string" }
+      - { label: "简要描述", name: "description", widget: "text" }
+      - { label: "图标", name: "icon", widget: "string", default: "🏗️" }
+      - { label: "详情页链接", name: "link", widget: "string", required: false }
+
+  # ---------- 首页横幅 ----------
+  - name: "hero"
+    label: "首页横幅"
+    label_singular: "横幅"
+    folder: "content/hero"
+    create: false
+    slug: "index"
+    fields:
+      - { label: "标题", name: "title", widget: "string" }
+      - { label: "副标题", name: "subtitle", widget: "text" }
+      - { label: "背景图片", name: "background_image", widget: "image", required: false }
