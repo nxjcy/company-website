@@ -3,6 +3,8 @@ backend:
   name: github
   repo: nxjcy/company-website
   branch: main
+  auth_type: token
+  token: ${GITHUB_TOKEN} # 引用环境变量
 
 # 媒体文件（图片）存放位置
 media_folder: "images"        # 图片上传到 images 文件夹
